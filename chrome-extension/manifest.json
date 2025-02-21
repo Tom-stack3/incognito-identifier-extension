@@ -1,0 +1,26 @@
+{
+    "manifest_version": 2,
+    "name": "Incognito Identifier Extension",
+    "version": "1.0",
+    "description": "Adds a magic postfix 'PRVT_' to the title of any tab in incognito mode, to identify incognito windows easily with scripts.",
+    "permissions": [
+        "tabs",
+        "activeTab"
+    ],
+    "background": {
+        "scripts": [
+            "src/background.js"
+        ]
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+}
