@@ -2,7 +2,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "updateTitle") {
         const updateTitle = () => {
             if (document.title.endsWith(MAGIC_IDENTIFIER)) return;
-            MAGIC_IDENTIFIER = " PRVT_";
+            MAGIC_IDENTIFIER = " Private Tab";
             document.title = document.title + MAGIC_IDENTIFIER;
         };
 
