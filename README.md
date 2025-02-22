@@ -67,18 +67,29 @@ toggle_brave() {
 ### Windows
 
 ```ahk
-; Toggle Brave Incognito Window on WinKey + Shift + W
-#^w::OpenBraveIncognito()
+#w::ToggleBrave() ; WinKey + W
+#+w::ToggleBraveIncognito() ; WinKey + Shift + W
 
-OpenBraveIncognito() {
-    ; The window title for incognito windows is postfixed with 'Private Tab' when using this extension
-    INCOGNITO_MAGIC_STRING := "Private Tab"
-    if WinExist(INCOGNITO_MAGIC_STRING . " - Brave") {
+INCOGNITO_MAGIC := "Private Tab - Brave"
+ToggleBrave() {
+    if WinExist("Brave",,INCOGNITO_MAGIC) {
         WinActivate
     } else {
-        Run, "C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe" --incognito
+        Run "brave.exe"
         Sleep 300
-        if WinExist(INCOGNITO_MAGIC_STRING . " - Brave") {
+        if WinExist("Brave",,INCOGNITO_MAGIC) {
+            WinActivate
+        }
+    }
+}
+
+ToggleBraveIncognito() {
+    if WinExist(INCOGNITO_MAGIC) {
+        WinActivate
+    } else {
+        Run "brave.exe --incognito"
+        Sleep 300
+        if WinExist(INCOGNITO_MAGIC) {
             WinActivate
         }
     }
